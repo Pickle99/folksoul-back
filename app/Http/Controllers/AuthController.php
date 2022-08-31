@@ -16,7 +16,12 @@ class AuthController extends Controller
 		]);
 
 		$user = User::where('username', $request->username)->first();
-
 		return $user->createToken($request->username . Str::random(30))->plainTextToken;
+	}
+
+	public function logout(Request $request)
+	{
+		$request->user()->currentAccessToken()->delete();
+		return response()->json('Logout successfully');
 	}
 }
