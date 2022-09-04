@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\MemberController;
 use App\Http\Controllers\AuthController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -20,3 +21,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::post('login', [AuthController::class, 'login'])->name('login');
 Route::post('logout', [AuthController::class, 'logout'])->middleware('auth:sanctum')->name('logout');
+Route::post('add-member', [MemberController::class, 'store'])->middleware('auth:sanctum')->name('member.store');
